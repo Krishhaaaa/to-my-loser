@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>To My Love</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #ff4d4d;
+      font-family: 'Georgia', serif;
+      overflow-x: hidden;
+    }
+
+    h1, p {
+      text-align: center;
+      margin: 2rem 1rem;
+    }
+
+    .music-btn, .click-btn {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      display: block;
+      margin: 1rem auto;
+      transition: background 0.3s ease;
+    }
+
+    .music-btn:hover, .click-btn:hover {
+      background: #ff1a1a;
+    }
+
+    .heart {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatHearts 10s linear infinite;
+      z-index: -1;
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -7.5px;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .scroll-letter, .glimpses-section {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: #1a1a1a;
+      color: #ffcccc;
+      border-radius: 15px;
+      line-height: 1.8;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+      font-family: 'Courier New', monospace;
+    }
+
+    #hidden-message {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      color: white;
+      background-color: #330000;
+      border: 1px solid red;
+      border-radius: 10px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+      
+      .glimpses-section h2 {
+        text-align: center;
+        color: #ff6666;
+      }
+
+      .glimpses-section .glimpse-media {
+        width: 280px;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+        margin: 1.5rem auto 0.5rem auto;
+        box-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
+      }
+      
+      video::-webkit-media-controls {
+        margin: 0;
+        padding: 0;
+      }
+
+
+      .media-caption {
+        color: #ffcccc;
+        font-style: italic;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+    .audio-container {
+      text-align: center;
+      margin-top: 1rem;
+    }
+      
+      .fade-in-text {
+        animation: fadeLines 2s ease-in-out forwards;
+        opacity: 0;
+      }
+
+      @keyframes fadeLines {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+          text-shadow: none;
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+          text-shadow: 0 0 8px rgba(255, 77, 77, 0.4);
+        }
+      }
+      
+      .password-box {
+        text-align: center;
+        margin: 4rem auto;
+        background: #1a1a1a;
+        padding: 2rem;
+        border-radius: 15px;
+        max-width: 500px;
+        box-shadow: 0 0 12px rgba(255, 77, 77, 0.4);
+      }
+
+      .password-box input[type="text"] {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 10px;
+        border: none;
+        width: 60%;
+        max-width: 300px;
+        margin-bottom: 1rem;
+      }
+
+      .password-box button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+
+      .password-box button:hover {
+        background-color: #ff1a1a;
+      }
+
+      .password-error {
+        color: #ff9999;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+      }
+
+      
+      .final-scroll-container {
+        text-align: center;
+        margin: 5rem auto;
+        padding: 2rem;
+        background-color: #1a1a1a;
+        border-radius: 20px;
+        max-width: 600px;
+        box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
+      }
+
+      .scroll-toggle-btn {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        font-size: 1.1rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        margin-bottom: 1.5rem;
+      }
+
+      .scroll-toggle-btn:hover {
+        background-color: #ff1a1a;
+      }
+
+      .final-scroll {
+        background-color: #330000;
+        color: #ffcccc;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        border-radius: 15px;
+        line-height: 1.8;
+        border: 1px solid #ff4d4d;
+        animation: fadeScroll 1s ease-in-out forwards;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @keyframes fadeScroll {
+        0% {
+          opacity: 0;
+          transform: scaleY(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <script>
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${5 + Math.random() * 5}s`;
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <!-- MUSIC -->
+  <audio id="bgMusic" preload="auto" loop controls style="display: none;">
+    <source src="KSI Holiday [Official Music Video].mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Play Our Song Button -->
+  <button class="music-btn" onclick="playSong()">▶️ Play Our Song</button>
+
+  <!-- Audio Controls -->
+  <div class="audio-container">
+    <audio controls>
+      <source src="holiday.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    function playSong() {
+      const audio = document.getElementById('bgMusic');
+      audio.style.display = "block";
+      audio.play().catch(err => {
+        alert("Autoplay blocked. Use controls below to play the song.");
+      });
+    }
+  </script>
+
+  <!-- Title & Message -->
+  <h1>Been Through A Lot, But More Love to Come ❤️</h1>
+  <p>You mean a lot to me, more than you will ever know.</p>
+
+  <!-- Letter -->
+  <div class="scroll-letter fade-in-text">
+    <p>
+      My favourite loser, <br><br>
+      This site holds almost everything I feel — more than words can say.<br>
+      Every moment with you is something I always look back and smile to,<br>
+      been through a lot of bs but I am glad that we are still here.<br><br>
+      I think u are always gonna be the closest person to me.<br><br>
+      I don't know how to define what we have but I have never felt safer and happier.<br>
+      Yours (maybe hahahhahah) ❤️
+    </p>
+  </div>
+
+
+  <!-- Click Me Surprise -->
+  <button class="click-btn" onclick="document.getElementById('hidden-message').style.display = 'block'">💌 Click Me</button>
+
+  <div id="hidden-message">
+    <p>Hey dumbass, this is just the beginning. There’s so much love (and memes) waiting for you. 💌</p>
+  </div>
+
+  <!-- Glimpses of Us Section -->
+  <!-- Glimpses of Us Section (Images & Videos) -->
+  <!-- Glimpses of Us Section (Images & Videos) -->
+  <div class="glimpses-section">
+    <h2>✨ Glimpses of Us ✨</h2>
+    <p>
+       quick reminders of eveyrthing that has happened.
+    </p>
+
+    <!-- Video 1 -->
+    <video controls class="glimpse-media">
+      <source src="1.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">Happy 20th babygirl.Does not get better than watching RCB win it.</p>
+    
+    <video controls class="glimpse-media">
+      <source src="2.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">Will always need to sticking to me when drunk.</p>
+    
+    <video controls class="glimpse-media">
+      <source src="3.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">i will always love scaring the shit of out.</p>
+    
+    <video controls class="glimpse-media">
+      <source src="4.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">i love how u accepted ur fate and just went down on me.(just like in the bedroom)</p>
+    
+    <video controls class="glimpse-media">
+      <source src="5.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">puri zindagi aise hi aankhon ke isharo pe sab karlena</p>
+    
+    <video controls class="glimpse-media">
+      <source src="6.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">there is nothing in the whole wide world i need other than ur kisses.</p>
+
+    <video controls class="glimpse-media">
+      <source src="7.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">to sneaking around more and i just love how cutely u do what u do</p>
+
+    <video controls class="glimpse-media">
+      <source src="8.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">Not letting me carry my own bag is the hottest fucking thing u can ever do.</p>
+
+    <video controls class="glimpse-media">
+      <source src="9.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">when i die, this is the memory that is gonna play voh 7 seconds mai. The matching outfits, rcb winning on ur bday, spending the whole 24 hours of ur 20th together, u letting me yap for 20 hours. i dont think this could have been better in any way.</p>
+
+   
+    <!-- Photos -->
+    <img src="10.jpg" alt="Us 1" class="glimpse-media">
+    <p class="media-caption">i love this photo bahot zyada idk why, started off as bestfriends and always gonna fulfil that role.</p>
+
+    <img src="12.jpg" alt="Us 2" class="glimpse-media">
+    <p class="media-caption">My perfect sunshine boy, u literraly look like a sunflower here. </p>
+
+    <img src="13.jpg" alt="Us 3" class="glimpse-media">
+    <p class="media-caption">Matching with u just makes me too happyyy.</p>
+    
+    <video controls class="glimpse-media">
+      <source src="14.mov" type="video/quicktime">
+      Your browser does not support the video tag.
+    </video>
+    <p class="media-caption">i think i will love and hate you forever for this.</p>
+
+    <img src="14.jpg" alt="Us 3" class="glimpse-media">
+    <p class="media-caption">genuinely plan to keep you forever</p>
+    
+    <img src="15.jpg" alt="Us 3" class="glimpse-media">
+    <p class="media-caption">favourite leg rest hai yeh, thankyou for always making sure i am comfortable even when u aren't.</p>
+    
+    <img src="16.jpg" alt="Us 3" class="glimpse-media">
+    <p class="media-caption">This day has been the best day of my life, to spend so much quality time with u. </p>
+  </div>
+
+  <div class="password-box">
+    <p>🔒 Enter the name you call me that i pretend to hate but get vvvv happy when u say it :</p>
+    <input type="text" id="passwordInput" placeholder="Enter secret word..." />
+    <br />
+    <button onclick="checkPassword()">Unlock</button>
+    <div id="passwordError" class="password-error"></div>
+  </div>
+
+  <!-- Final Scroll Section -->
+  <div class="final-scroll-container hidden" id="final-scroll-container">
+    <div class="final-scroll" id="final-scroll">
+      <p>
+        My dearest troublemaker,<br><br>
+        If you've reached here, just know — this isn't the end. It's literally the beginning of a lot more chaos, comfort, and maybe love.<br>
+        There's still so many sunsets to watch, eat so much more if ever u decide to eat with me or we actually end up going on a date and memes to send at 2AM.<br><br>
+        This site was my little way of saying: you’re kind of stuck with me now.<br> <br>
+        I Love You, Lay.<br><br>
+        Yours always (but maybe more than maybe this time). 💘
+      </p>
+    </div>
+  </div>
+
+  
+  <script>
+    function toggleScroll() {
+      const scrollDiv = document.getElementById('final-scroll');
+      scrollDiv.classList.toggle('hidden');
+    }
+  </script>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value.trim().toLowerCase();
+      const errorDiv = document.getElementById("passwordError");
+      const scrollContainer = document.getElementById("final-scroll-container");
+
+      if (input === "princess") {
+        scrollContainer.classList.remove("hidden");
+        errorDiv.textContent = "";
+      } else {
+        errorDiv.textContent = "Nope. Try again, smartypants 💭";
+      }
+    }
+  </script>
+
+
+</body>
+</html>
